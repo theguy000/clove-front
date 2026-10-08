@@ -38,9 +38,7 @@ export function Layout() {
                             <SidebarMenuItem>
                                 <SidebarMenuButton size="lg" className="w-full justify-center md:justify-start">
                                     <div className="flex items-center gap-2">
-                                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-                                            <span className="text-lg font-bold text-primary-foreground">C</span>
-                                        </div>
+                                        <img src="/logo.svg" alt="Clove" className="h-8 w-8 rounded-lg" />
                                         <span className="text-xl font-semibold">Clove</span>
                                     </div>
                                 </SidebarMenuButton>
