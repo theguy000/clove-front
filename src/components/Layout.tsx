@@ -13,6 +13,7 @@ import {
     SidebarProvider,
     SidebarTrigger,
 } from '@/components/ui/sidebar'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 export function Layout() {
     const location = useLocation()
@@ -84,6 +85,7 @@ export function Layout() {
                 <div className="flex flex-1 flex-col">
                     <header className="flex h-14 items-center gap-4 border-b px-6 lg:h-16">
                         <SidebarTrigger className="-ml-1" />
+                        <ThemeToggle className="relative ml-auto" />
                     </header>
                     
                     <main className="flex-1 overflow-y-auto">

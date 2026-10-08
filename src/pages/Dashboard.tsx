@@ -36,28 +36,28 @@ export function Dashboard() {
             value: serverStatus === 'offline' ? 'N/A' : (statistics?.accounts.total_accounts ?? 0).toString(),
             icon: Users,
             color: 'text-pink-500',
-            bgColor: 'bg-pink-50',
+            bgColor: 'bg-pink-50 dark:bg-pink-500/10',
         },
         {
             name: 'Server Status',
             value: serverStatus === 'online' ? 'Online' : 'Offline',
             icon: Server,
             color: serverStatus === 'online' ? 'text-green-500' : 'text-red-500',
-            bgColor: serverStatus === 'online' ? 'bg-green-50' : 'bg-red-50',
+            bgColor: serverStatus === 'online' ? 'bg-green-50 dark:bg-green-500/10' : 'bg-red-50 dark:bg-red-500/10',
         },
         {
             name: 'Active Sessions',
             value: serverStatus === 'offline' ? 'N/A' : (statistics?.accounts.active_sessions ?? 0).toString(),
             icon: Activity,
             color: 'text-blue-500',
-            bgColor: 'bg-blue-50',
+            bgColor: 'bg-blue-50 dark:bg-blue-500/10',
         },
         {
             name: 'System Status',
             value: serverStatus === 'offline' ? 'N/A' : statistics?.status === 'healthy' ? 'Normal' : 'Degraded',
             icon: Settings,
             color: statistics?.status === 'healthy' ? 'text-green-500' : 'text-yellow-500',
-            bgColor: statistics?.status === 'healthy' ? 'bg-green-50' : 'bg-yellow-50',
+            bgColor: statistics?.status === 'healthy' ? 'bg-green-50 dark:bg-green-500/10' : 'bg-yellow-50 dark:bg-yellow-500/10',
         },
     ]
 
@@ -115,7 +115,7 @@ export function Dashboard() {
                     <Card className='hover:shadow-lg transition-all hover:border-primary/50'>
                         <CardHeader>
                             <div className='flex items-center space-x-4'>
-                                <div className='p-3 rounded-lg bg-pink-50'>
+                                <div className='p-3 rounded-lg bg-pink-50 dark:bg-pink-500/10'>
                                     <Users className='h-6 w-6 text-pink-500' />
                                 </div>
                                 <div className='space-y-1'>
@@ -134,7 +134,7 @@ export function Dashboard() {
                     <Card className='hover:shadow-lg transition-all hover:border-primary/50'>
                         <CardHeader>
                             <div className='flex items-center space-x-4'>
-                                <div className='p-3 rounded-lg bg-purple-50'>
+                                <div className='p-3 rounded-lg bg-purple-50 dark:bg-purple-500/10'>
                                     <Settings className='h-6 w-6 text-purple-500' />
                                 </div>
                                 <div className='space-y-1'>

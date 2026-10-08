@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Alert, AlertDescription } from '@/components/ui/alert'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 export function Login() {
     const [adminKey, setAdminKey] = useState('')
@@ -37,15 +38,16 @@ export function Login() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 via-white to-purple-50 relative overflow-hidden">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 via-white to-purple-50 dark:from-background dark:via-background dark:to-background relative overflow-hidden">
+            <ThemeToggle className="absolute top-4 right-4 z-20" />
             {/* Decorative background elements */}
-            <div className="absolute inset-0 opacity-30">
-                <div className="absolute top-10 left-10 w-72 h-72 bg-pink-200 rounded-full filter blur-3xl animate-pulse"></div>
-                <div className="absolute bottom-10 right-10 w-96 h-96 bg-purple-200 rounded-full filter blur-3xl animate-pulse animation-delay-2000"></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-100 rounded-full filter blur-3xl animate-pulse animation-delay-4000"></div>
+            <div className="absolute inset-0 opacity-30 dark:opacity-20">
+                <div className="absolute top-10 left-10 w-72 h-72 bg-pink-200 dark:bg-pink-500 rounded-full filter blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-10 right-10 w-96 h-96 bg-purple-200 dark:bg-purple-500 rounded-full filter blur-3xl animate-pulse animation-delay-2000"></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-100 dark:bg-pink-400 rounded-full filter blur-3xl animate-pulse animation-delay-4000"></div>
             </div>
             
-            <Card className="w-full max-w-md relative z-10 shadow-xl border-0 backdrop-blur-sm bg-white/95">
+            <Card className="w-full max-w-md relative z-10 shadow-xl border-0 backdrop-blur-sm bg-card/95">
                 <CardHeader className="space-y-1 text-center">
                     <div className="flex justify-center mb-4">
                         <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center shadow-lg">
