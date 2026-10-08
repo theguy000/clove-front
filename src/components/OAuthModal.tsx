@@ -56,7 +56,7 @@ export function OAuthModal({ onClose }: OAuthModalProps) {
 
     const handleGenerateUrl = async () => {
         if (!organizationUuid.trim()) {
-            setError('请输入 Organization UUID')
+            setError('Please enter Organization UUID')
             return
         }
 
@@ -86,7 +86,7 @@ export function OAuthModal({ onClose }: OAuthModalProps) {
 
             setStep('code')
         } catch (err) {
-            setError('生成授权 URL 失败')
+            setError('Failed to generate authorization URL')
             console.error(err)
         } finally {
             setLoading(false)
@@ -95,7 +95,7 @@ export function OAuthModal({ onClose }: OAuthModalProps) {
 
     const handleExchangeToken = async () => {
         if (!authCode.trim()) {
-            setError('请输入授权码')
+            setError('Please enter the authorization code')
             return
         }
 
@@ -103,7 +103,7 @@ export function OAuthModal({ onClose }: OAuthModalProps) {
         setError('')
 
         try {
-            // 发送 code 到后端进行 token 交换
+            // Send the code to the backend for token exchange
             const exchangeData = {
                 organization_uuid: formatUUID(organizationUuid),
                 code: authCode,
@@ -116,7 +116,7 @@ export function OAuthModal({ onClose }: OAuthModalProps) {
             onClose()
         } catch (err) {
             console.error('OAuth exchange error:', err)
-            setError('授权失败，请重试')
+            setError('Authorization failed, please try again')
         } finally {
             setLoading(false)
         }
@@ -127,7 +127,7 @@ export function OAuthModal({ onClose }: OAuthModalProps) {
             <Alert className={cn(isMobile && 'mb-4')}>
                 <Info className='h-4 w-4' />
                 <AlertDescription>
-                    推荐使用 Cookie 添加账户，Clove 可以自动完成认证。OAuth 登录仅作为备选方案。
+                    Adding accounts via cookie is recommended; Clove can complete authentication automatically. OAuth login is only a fallback.
                 </AlertDescription>
             </Alert>
 
@@ -139,15 +139,15 @@ export function OAuthModal({ onClose }: OAuthModalProps) {
                         </Label>
                         <Input
                             id='organization_uuid'
-                            placeholder='请输入您的 Organization UUID'
+                            placeholder='Enter your Organization UUID'
                             value={organizationUuid}
                             onChange={e => {
                                 const value = e.target.value
                                 setOrganizationUuid(value)
-                                // 验证 UUID 格式
+                                // Validate UUID format
                                 const formatted = formatUUID(value)
                                 if (formatted && !isValidUUID(formatted)) {
-                                    setUuidError('请输入有效的 UUID 格式')
+                                    setUuidError('Please enter a valid UUID format')
                                 } else {
                                     setUuidError('')
                                 }
@@ -160,15 +160,15 @@ export function OAuthModal({ onClose }: OAuthModalProps) {
                                 <span>{uuidError}</span>
                             </div>
                         ) : (
-                            <p className='text-sm text-muted-foreground'>可在 Claude.ai Cookie 中的 lastActiveOrg 字段找到</p>
+                            <p className='text-sm text-muted-foreground'>Found in the lastActiveOrg field of the Claude.ai cookie</p>
                         )}
                     </div>
 
                     <div className='space-y-2'>
-                        <Label htmlFor='accountType'>账户类型</Label>
+                        <Label htmlFor='accountType'>Account Type</Label>
                         <Select value={accountType} onValueChange={value => setAccountType(value as any)}>
                             <SelectTrigger className='w-full' id='accountType'>
-                                <SelectValue placeholder='选择账户类型' />
+                                <SelectValue placeholder='Select account type' />
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectItem value='Pro'>Pro</SelectItem>
@@ -189,17 +189,17 @@ export function OAuthModal({ onClose }: OAuthModalProps) {
                     <Alert>
                         <Info className='h-4 w-4' />
                         <AlertDescription>
-                            已在新窗口打开授权页面。完成授权后，请复制授权码并粘贴到下方输入框。
+                            The authorization page has opened in a new window. After authorizing, copy the authorization code and paste it into the field below.
                         </AlertDescription>
                     </Alert>
 
                     <div className='space-y-2'>
                         <Label htmlFor='auth_code'>
-                            授权码 <span className='text-destructive'>*</span>
+                            Authorization Code <span className='text-destructive'>*</span>
                         </Label>
                         <Input
                             id='auth_code'
-                            placeholder='请粘贴授权码'
+                            placeholder='Paste the authorization code'
                             value={authCode}
                             onChange={e => setAuthCode(e.target.value)}
                             className='font-mono'
@@ -220,7 +220,7 @@ export function OAuthModal({ onClose }: OAuthModalProps) {
     const footerContent = (
         <>
             <Button type='button' variant='outline' onClick={onClose}>
-                取消
+                Cancel
             </Button>
             {step === 'input' ? (
                 <Button
@@ -229,18 +229,18 @@ export function OAuthModal({ onClose }: OAuthModalProps) {
                 >
                     {loading && <Loader2 className='mr-2 h-4 w-4 animate-spin' />}
                     {loading ? (
-                        '生成中...'
+                        'Generating...'
                     ) : (
                         <>
                             <ExternalLink className='mr-2 h-4 w-4' />
-                            开始授权
+                            Start Authorization
                         </>
                     )}
                 </Button>
             ) : (
                 <Button onClick={handleExchangeToken} disabled={loading || !authCode.trim()}>
                     {loading && <Loader2 className='mr-2 h-4 w-4 animate-spin' />}
-                    {loading ? '验证中...' : '完成授权'}
+                    {loading ? 'Verifying...' : 'Complete Authorization'}
                 </Button>
             )}
         </>
@@ -255,8 +255,8 @@ export function OAuthModal({ onClose }: OAuthModalProps) {
             <Dialog open={true} onOpenChange={onClose}>
                 <DialogContent className='sm:max-w-[600px]'>
                     <DialogHeader>
-                        <DialogTitle>OAuth 登录</DialogTitle>
-                        <DialogDescription>使用 OAuth 方式添加 Claude 账户</DialogDescription>
+                        <DialogTitle>OAuth Login</DialogTitle>
+                        <DialogDescription>Add a Claude account using OAuth</DialogDescription>
                     </DialogHeader>
                     {formContent}
                     <DialogFooter>{footerContent}</DialogFooter>
@@ -270,8 +270,8 @@ export function OAuthModal({ onClose }: OAuthModalProps) {
             <DrawerContent>
                 <div className='max-h-[90vh] overflow-auto'>
                     <DrawerHeader>
-                        <DrawerTitle>OAuth 登录</DrawerTitle>
-                        <DrawerDescription>使用 OAuth 方式添加 Claude 账户</DrawerDescription>
+                        <DrawerTitle>OAuth Login</DrawerTitle>
+                        <DrawerDescription>Add a Claude account using OAuth</DrawerDescription>
                     </DrawerHeader>
                     <div className='px-4'>{formContent}</div>
                     <DrawerFooter className='flex-row justify-end space-x-2'>{footerContent}</DrawerFooter>

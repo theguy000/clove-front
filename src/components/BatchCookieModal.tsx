@@ -81,7 +81,7 @@ export function BatchCookieModal({ onClose }: BatchCookieModalProps) {
                         updated[i] = {
                             ...updated[i],
                             status: 'error',
-                            error: 'Cookie 格式无效',
+                            error: 'Invalid cookie format',
                         }
                         return updated
                     })
@@ -104,7 +104,7 @@ export function BatchCookieModal({ onClose }: BatchCookieModalProps) {
                     return updated
                 })
             } catch (error: any) {
-                const errorMessage = error.response?.data?.detail?.message || '添加失败'
+                const errorMessage = error.response?.data?.detail?.message || 'Failed to add'
 
                 setResults(prev => {
                     const updated = [...prev]
@@ -117,7 +117,7 @@ export function BatchCookieModal({ onClose }: BatchCookieModalProps) {
                 })
             }
 
-            // 小延迟，避免请求过快
+            // Small delay to avoid sending requests too quickly
             await new Promise(resolve => setTimeout(resolve, 300))
         }
 
@@ -141,12 +141,12 @@ export function BatchCookieModal({ onClose }: BatchCookieModalProps) {
 
         try {
             await navigator.clipboard.writeText(failedCookies)
-            toast.success('已复制失败的 Cookie', {
+            toast.success('Copied failed cookies', {
                 icon: <Check className='h-4 w-4' />,
             })
         } catch (error) {
             console.error('Failed to copy:', error)
-            toast.error('复制失败')
+            toast.error('Copy failed')
         }
     }
 
@@ -181,28 +181,28 @@ export function BatchCookieModal({ onClose }: BatchCookieModalProps) {
                 <>
                     <div className='space-y-2'>
                         <Label htmlFor='cookies'>
-                            Cookie 列表 <span className='text-destructive'>*</span>
+                            Cookie List <span className='text-destructive'>*</span>
                         </Label>
                         <Textarea
                             id='cookies'
                             placeholder={
-                                '粘贴您的 Cookie，每行一个...\n\n例如：\nsk-ant-sid01-xxxxx\nsk-ant-sid01-yyyyy\nsessionKey=sk-ant-sid01-zzzzz'
+                                'Paste your cookies, one per line...\n\nExample:\nsk-ant-sid01-xxxxx\nsk-ant-sid01-yyyyy\nsessionKey=sk-ant-sid01-zzzzz'
                             }
                             value={cookies}
                             onChange={e => setCookies(e.target.value)}
                             className='min-h-[200px] font-mono text-sm break-all'
                             required
                         />
-                        <p className='text-sm text-muted-foreground'>支持直接粘贴 sessionKey 或完整的 Cookie 格式</p>
+                        <p className='text-sm text-muted-foreground'>Supports pasting a bare sessionKey or the full cookie format</p>
                     </div>
                 </>
             ) : (
                 <div className='space-y-4'>
                     <div className='space-y-2'>
                         <div className='flex items-center justify-between'>
-                            <Label>处理进度</Label>
+                            <Label>Progress</Label>
                             <span className='text-sm text-muted-foreground'>
-                                {getSuccessCount()} 成功 / {getErrorCount()} 失败 / {results.length} 总计
+                                {getSuccessCount()} succeeded / {getErrorCount()} failed / {results.length} total
                             </span>
                         </div>
                         <Progress value={getProgress()} className='h-2' />
@@ -236,8 +236,8 @@ export function BatchCookieModal({ onClose }: BatchCookieModalProps) {
                             <Alert>
                                 <FileText className='h-4 w-4' />
                                 <AlertDescription>
-                                    处理完成！成功添加 {getSuccessCount()} 个账户
-                                    {getErrorCount() > 0 && `，${getErrorCount()} 个失败`}。
+                                    Done! Successfully added {getSuccessCount()} account(s)
+                                    {getErrorCount() > 0 && `, ${getErrorCount()} failed`}.
                                 </AlertDescription>
                             </Alert>
                             {getErrorCount() > 0 && (
@@ -249,7 +249,7 @@ export function BatchCookieModal({ onClose }: BatchCookieModalProps) {
                                     onClick={copyFailedCookies}
                                 >
                                     <Copy className='mr-2 h-4 w-4' />
-                                    复制失败的 Cookie
+                                    Copy Failed Cookies
                                 </Button>
                             )}
                         </>
@@ -264,16 +264,16 @@ export function BatchCookieModal({ onClose }: BatchCookieModalProps) {
             {!showResults ? (
                 <>
                     <Button type='button' variant='outline' onClick={handleClose}>
-                        取消
+                        Cancel
                     </Button>
                     <Button type='submit' disabled={isProcessing || !cookies.trim()}>
                         {isProcessing && <Loader2 className='mr-2 h-4 w-4 animate-spin' />}
-                        开始添加
+                        Start Adding
                     </Button>
                 </>
             ) : (
                 <Button onClick={handleClose} disabled={isProcessing}>
-                    {isProcessing ? '处理中...' : '完成'}
+                    {isProcessing ? 'Processing...' : 'Done'}
                 </Button>
             )}
         </>
@@ -289,8 +289,8 @@ export function BatchCookieModal({ onClose }: BatchCookieModalProps) {
                 <DialogContent className='sm:max-w-[600px]'>
                     <form onSubmit={handleSubmit}>
                         <DialogHeader>
-                            <DialogTitle>批量添加 Cookie</DialogTitle>
-                            <DialogDescription>一次性添加多个 Claude 账户 Cookie</DialogDescription>
+                            <DialogTitle>Batch Add Cookies</DialogTitle>
+                            <DialogDescription>Add multiple Claude account cookies at once</DialogDescription>
                         </DialogHeader>
                         <div className='py-4'>{formContent}</div>
                         <DialogFooter>{footerContent}</DialogFooter>
@@ -305,8 +305,8 @@ export function BatchCookieModal({ onClose }: BatchCookieModalProps) {
             <DrawerContent>
                 <form onSubmit={handleSubmit} className='max-h-[90vh] overflow-auto'>
                     <DrawerHeader>
-                        <DrawerTitle>批量添加 Cookie</DrawerTitle>
-                        <DrawerDescription>一次性添加多个 Claude 账户 Cookie</DrawerDescription>
+                        <DrawerTitle>Batch Add Cookies</DrawerTitle>
+                        <DrawerDescription>Add multiple Claude account cookies at once</DrawerDescription>
                     </DrawerHeader>
                     <div className='px-4 pb-4'>{formContent}</div>
                     <DrawerFooter className='flex-row justify-end space-x-2'>{footerContent}</DrawerFooter>

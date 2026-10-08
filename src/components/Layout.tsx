@@ -18,9 +18,9 @@ export function Layout() {
     const location = useLocation()
 
     const navigation = [
-        { name: '仪表板', href: '/', icon: Home },
-        { name: '账户管理', href: '/accounts', icon: Users },
-        { name: '应用设置', href: '/settings', icon: Settings },
+        { name: 'Dashboard', href: '/', icon: Home },
+        { name: 'Account Management', href: '/accounts', icon: Users },
+        { name: 'App Settings', href: '/settings', icon: Settings },
     ]
 
     const handleLogout = () => {
@@ -74,7 +74,7 @@ export function Layout() {
                             <SidebarMenuItem>
                                 <SidebarMenuButton onClick={handleLogout} className="w-full text-destructive hover:bg-destructive/10 hover:text-destructive">
                                     <LogOut className="h-4 w-4" />
-                                    <span>退出登录</span>
+                                    <span>Log out</span>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
                         </SidebarMenu>

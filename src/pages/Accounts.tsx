@@ -75,7 +75,7 @@ export function Accounts() {
             setAccountToDelete(null)
         } catch (error) {
             console.error('Failed to delete account:', error)
-            alert('删除账户失败')
+            alert('Failed to delete account')
         }
     }
 
@@ -156,11 +156,11 @@ export function Accounts() {
     const getStatusName = (status: string) => {
         switch (status) {
             case 'valid':
-                return '正常'
+                return 'Normal'
             case 'invalid':
-                return '无效'
+                return 'Invalid'
             case 'rate_limited':
-                return '限流中'
+                return 'Rate Limited'
             default:
                 return status
         }
@@ -221,18 +221,18 @@ export function Accounts() {
                         <CardContent className='pt-0 space-y-3'>
                             <div className='space-y-2 text-sm'>
                                 <div className='flex justify-between'>
-                                    <span className='text-muted-foreground'>最后使用</span>
+                                    <span className='text-muted-foreground'>Last Used</span>
                                     <span>{new Date(account.last_used).toLocaleString('zh-CN')}</span>
                                 </div>
                                 <div className='flex justify-between'>
-                                    <span className='text-muted-foreground'>重置时间</span>
+                                    <span className='text-muted-foreground'>Reset Time</span>
                                     <span>{account.resets_at ? new Date(account.resets_at).toLocaleString('zh-CN') : '-'}</span>
                                 </div>
                             </div>
                             <div className='flex gap-2 pt-2'>
                                 <Button size='sm' variant='outline' className='flex-1' onClick={() => handleEdit(account)}>
                                     <Pencil className='mr-2 h-4 w-4' />
-                                    编辑
+                                    Edit
                                 </Button>
                                 <Button
                                     size='sm'
@@ -244,7 +244,7 @@ export function Accounts() {
                                     }}
                                 >
                                     <Trash2 className='mr-2 h-4 w-4' />
-                                    删除
+                                    Delete
                                 </Button>
                             </div>
                         </CardContent>
@@ -369,21 +369,21 @@ export function Accounts() {
         <div className='space-y-6'>
             <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4'>
                 <div>
-                    <h1 className='text-3xl font-bold tracking-tight pb-1'>账户管理</h1>
-                    <p className='text-muted-foreground'>管理您的 Claude 账户</p>
+                    <h1 className='text-3xl font-bold tracking-tight pb-1'>Account Management</h1>
+                    <p className='text-muted-foreground'>Manage your Claude accounts</p>
                 </div>
                 <div className='flex flex-col sm:flex-row gap-2 w-full sm:w-auto'>
                     <Button onClick={() => setOauthModalOpen(true)} variant='outline' className='w-full sm:w-auto'>
                         <KeyRound className='mr-2 h-4 w-4' />
-                        OAuth 登录
+                        OAuth Login
                     </Button>
                     <Button onClick={() => setBatchModalOpen(true)} variant='outline' className='w-full sm:w-auto'>
                         <FileText className='mr-2 h-4 w-4' />
-                        批量添加
+                        Batch Add
                     </Button>
                     <Button onClick={handleAdd} className='w-full sm:w-auto'>
                         <Plus className='mr-2 h-4 w-4' />
-                        添加 Cookie
+                        Add Cookie
                     </Button>
                 </div>
             </div>
@@ -394,20 +394,20 @@ export function Accounts() {
                         <div className='rounded-full bg-muted p-6 mb-4'>
                             <Users className='h-12 w-12 text-muted-foreground' />
                         </div>
-                        <h3 className='text-lg font-semibold mb-2'>暂无账户</h3>
-                        <p className='text-muted-foreground mb-4 text-center'>点击"添加 Cookie"或"OAuth 登录"创建第一个账户</p>
+                        <h3 className='text-lg font-semibold mb-2'>No Accounts</h3>
+                        <p className='text-muted-foreground mb-4 text-center'>Click "Add Cookie" or "OAuth Login" to create your first account</p>
                         <div className='flex flex-col sm:flex-row gap-2'>
                             <Button onClick={() => setOauthModalOpen(true)} variant='outline'>
                                 <KeyRound className='mr-2 h-4 w-4' />
-                                OAuth 登录
+                                OAuth Login
                             </Button>
                             <Button onClick={() => setBatchModalOpen(true)} variant='outline'>
                                 <FileText className='mr-2 h-4 w-4' />
-                                批量添加
+                                Batch Add
                             </Button>
                             <Button onClick={handleAdd}>
                                 <Plus className='mr-2 h-4 w-4' />
-                                添加 Cookie
+                                Add Cookie
                             </Button>
                         </div>
                     </CardContent>
@@ -419,12 +419,12 @@ export function Accounts() {
                             <TableHeader>
                                 <TableRow>
                                     <TableHead>Organization UUID</TableHead>
-                                    <TableHead>认证方式</TableHead>
-                                    <TableHead>状态</TableHead>
-                                    <TableHead>账户类型</TableHead>
-                                    <TableHead>最后使用</TableHead>
-                                    <TableHead>重置时间</TableHead>
-                                    <TableHead className='text-right'>操作</TableHead>
+                                    <TableHead>Auth Method</TableHead>
+                                    <TableHead>Status</TableHead>
+                                    <TableHead>Account Type</TableHead>
+                                    <TableHead>Last Used</TableHead>
+                                    <TableHead>Reset Time</TableHead>
+                                    <TableHead className='text-right'>Actions</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -456,14 +456,14 @@ export function Accounts() {
                                             <DropdownMenu>
                                                 <DropdownMenuTrigger asChild>
                                                     <Button variant='ghost' size='sm' className='h-8 w-8 p-0'>
-                                                        <span className='sr-only'>打开菜单</span>
+                                                        <span className='sr-only'>Open menu</span>
                                                         <MoreHorizontal className='h-4 w-4' />
                                                     </Button>
                                                 </DropdownMenuTrigger>
                                                 <DropdownMenuContent align='end'>
                                                     <DropdownMenuItem onClick={() => handleEdit(account)}>
                                                         <Pencil className='mr-2 h-4 w-4' />
-                                                        编辑
+                                                        Edit
                                                     </DropdownMenuItem>
                                                     <DropdownMenuItem
                                                         onClick={() => {
@@ -473,7 +473,7 @@ export function Accounts() {
                                                         className='text-destructive'
                                                     >
                                                         <Trash2 className='mr-2 h-4 w-4' />
-                                                        删除
+                                                        Delete
                                                     </DropdownMenuItem>
                                                 </DropdownMenuContent>
                                             </DropdownMenu>
@@ -495,18 +495,18 @@ export function Accounts() {
             <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
                 <AlertDialogContent>
                     <AlertDialogHeader>
-                        <AlertDialogTitle>确定要删除这个账户吗？</AlertDialogTitle>
+                        <AlertDialogTitle>Are you sure you want to delete this account?</AlertDialogTitle>
                         <AlertDialogDescription>
-                            此操作无法撤销。删除后该账户将从 Clove 中移除，但不会影响您在 Claude.ai 中的数据。
+                            This action cannot be undone. The account will be removed from Clove, but your data in Claude.ai will not be affected.
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                        <AlertDialogCancel>取消</AlertDialogCancel>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
                         <AlertDialogAction
                             onClick={handleDelete}
                             className='bg-destructive text-destructive-foreground hover:bg-destructive/90'
                         >
-                            删除
+                            Delete
                         </AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>

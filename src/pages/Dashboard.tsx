@@ -32,29 +32,29 @@ export function Dashboard() {
 
     const stats = [
         {
-            name: '账户总数',
+            name: 'Total Accounts',
             value: serverStatus === 'offline' ? 'N/A' : (statistics?.accounts.total_accounts ?? 0).toString(),
             icon: Users,
             color: 'text-pink-500',
             bgColor: 'bg-pink-50',
         },
         {
-            name: '服务器状态',
-            value: serverStatus === 'online' ? '在线' : '离线',
+            name: 'Server Status',
+            value: serverStatus === 'online' ? 'Online' : 'Offline',
             icon: Server,
             color: serverStatus === 'online' ? 'text-green-500' : 'text-red-500',
             bgColor: serverStatus === 'online' ? 'bg-green-50' : 'bg-red-50',
         },
         {
-            name: '活跃会话',
+            name: 'Active Sessions',
             value: serverStatus === 'offline' ? 'N/A' : (statistics?.accounts.active_sessions ?? 0).toString(),
             icon: Activity,
             color: 'text-blue-500',
             bgColor: 'bg-blue-50',
         },
         {
-            name: '系统状态',
-            value: serverStatus === 'offline' ? 'N/A' : statistics?.status === 'healthy' ? '正常' : '降级',
+            name: 'System Status',
+            value: serverStatus === 'offline' ? 'N/A' : statistics?.status === 'healthy' ? 'Normal' : 'Degraded',
             icon: Settings,
             color: statistics?.status === 'healthy' ? 'text-green-500' : 'text-yellow-500',
             bgColor: statistics?.status === 'healthy' ? 'bg-green-50' : 'bg-yellow-50',
@@ -89,8 +89,8 @@ export function Dashboard() {
     return (
         <div className='space-y-6'>
             <div>
-                <h1 className='text-3xl font-bold tracking-tight pb-1'>仪表板</h1>
-                <p className='text-muted-foreground'>欢迎使用 Clove!</p>
+                <h1 className='text-3xl font-bold tracking-tight pb-1'>Dashboard</h1>
+                <p className='text-muted-foreground'>Welcome to Clove!</p>
             </div>
 
             <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-4'>
@@ -110,7 +110,7 @@ export function Dashboard() {
             </div>
 
             <div>
-                <h2 className='text-2xl font-semibold mb-4'>快速操作</h2>
+                <h2 className='text-2xl font-semibold mb-4'>Quick Actions</h2>
                 <div className='grid gap-4 md:grid-cols-2'>
                     <Card className='hover:shadow-lg transition-all hover:border-primary/50'>
                         <CardHeader>
@@ -119,14 +119,14 @@ export function Dashboard() {
                                     <Users className='h-6 w-6 text-pink-500' />
                                 </div>
                                 <div className='space-y-1'>
-                                    <CardTitle>管理账户</CardTitle>
-                                    <CardDescription>添加、编辑或删除 Claude 账户</CardDescription>
+                                    <CardTitle>Manage Accounts</CardTitle>
+                                    <CardDescription>Add, edit, or delete Claude accounts</CardDescription>
                                 </div>
                             </div>
                         </CardHeader>
                         <CardContent>
                             <Button asChild className='w-full'>
-                                <Link to='/accounts'>前往管理</Link>
+                                <Link to='/accounts'>Go to Management</Link>
                             </Button>
                         </CardContent>
                     </Card>
@@ -138,14 +138,14 @@ export function Dashboard() {
                                     <Settings className='h-6 w-6 text-purple-500' />
                                 </div>
                                 <div className='space-y-1'>
-                                    <CardTitle>系统设置</CardTitle>
-                                    <CardDescription>配置应用程序参数</CardDescription>
+                                    <CardTitle>System Settings</CardTitle>
+                                    <CardDescription>Configure application parameters</CardDescription>
                                 </div>
                             </div>
                         </CardHeader>
                         <CardContent>
                             <Button asChild variant='secondary' className='w-full'>
-                                <Link to='/settings'>前往设置</Link>
+                                <Link to='/settings'>Go to Settings</Link>
                             </Button>
                         </CardContent>
                     </Card>
